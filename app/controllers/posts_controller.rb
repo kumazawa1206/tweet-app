@@ -22,4 +22,25 @@ class PostsController < ApplicationController
 
     redirect_to("/posts/index")
   end
+
+  def edit
+    @post = Post.find_by(id: params[:id])
+  end
+
+  # 投稿の編集
+  def update
+    @post = Post.find_by(id: params[:id])
+    @post.content = params[:content]
+    @post.save
+
+    redirect_to("/posts/index")
+  end
+
+  # 投稿の削除
+  def destroy
+    @post = Post.find_by(id: params[:id])
+    @post.destroy
+
+    redirect_to("/posts/index")
+  end
 end
